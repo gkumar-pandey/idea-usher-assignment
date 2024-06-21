@@ -14,6 +14,9 @@ const postSchema = new mongoose.Schema(
         ref: "Tag",
       },
     ],
+    imageUrl: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
