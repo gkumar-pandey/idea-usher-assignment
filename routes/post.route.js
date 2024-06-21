@@ -1,7 +1,17 @@
 const express = require("express");
-const { createNewPostHandler } = require("../controller/post.controller");
+const upload = require("../middleware/multer.middleware");
+
+const {
+  createNewPostHandler,
+  retrievePostsHandler,
+  deletePostByIdHandler,
+} = require("../controller/post.controller");
 const postRoute = express.Router();
 
-postRoute.post("/", createNewPostHandler);
+postRoute.post("/", upload.single("image"), createNewPostHandler);
+
+postRoute.get("/", retrievePostsHandler);
+
+postRoute.delete("/:postId", deletePostByIdHandler);
 
 module.exports = postRoute;

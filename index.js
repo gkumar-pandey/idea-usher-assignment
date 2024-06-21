@@ -7,6 +7,7 @@ const {
   globalErrorMiddleware,
   routeNotFoundMiddleware,
 } = require("./middleware/error.middleware");
+const connectDb = require("./config/db");
 
 dotenv.config();
 
@@ -17,10 +18,12 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
+connectDb();
+
 app.use("/api/v1/", routes);
 
-app.use(globalErrorMiddleware());
-app.use(routeNotFoundMiddleware());
+app.use(globalErrorMiddleware);
+app.use(routeNotFoundMiddleware);
 
 app.listen(PORT, () => {
   console.log(`Server is running at PORT:${PORT}`);
