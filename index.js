@@ -22,6 +22,10 @@ connectDb();
 
 app.use("/api/v1/", routes);
 
+app.get("/", (req, res) => {
+  return res.status(200).json("Server is Running.");
+});
+
 app.use(globalErrorMiddleware);
 app.use(routeNotFoundMiddleware);
 
